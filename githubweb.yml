@@ -1,0 +1,15 @@
+---
+- hosts: demo
+  become: yes
+  tasks:
+    - name: install apache server
+      action: yum name=httpd state=present
+    - name: start apache server
+      action: service name=httpd state=restarted
+    - name: install the git
+      action: yum name=git state=present
+    - name: clone the github repo
+      git:
+        repo: https://github.com/akshu20791/apachewebsite
+        dest: /var/www/html/web
+        clone: yes

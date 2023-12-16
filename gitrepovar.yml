@@ -1,0 +1,17 @@
+---
+- hosts: demo
+  become: yes
+  vars:
+    package: httpd
+    loc: /var/www/html/mylearnings
+    gitrepo: https://github.com/akshu20791/apachewebsite
+  tasks:
+    - name: install "{{package}}" server
+      action: yum name="{{package}}" state=present
+    - name: start "{{package}}" server
+      action: service name="{{package}}" state=restarted
+    - name: clone the github repo
+      git:
+        repo: "{{gitrepo}}"
+        dest: "{{loc}}"
+        clone: yes

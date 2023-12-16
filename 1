@@ -1,0 +1,9 @@
+---
+- hosts: demo
+  become: yes
+  vars:
+    package: httpd
+  tasks:
+    - name: remove "{{package}}" server
+      action : yum name="{{package}}" state=absent
+

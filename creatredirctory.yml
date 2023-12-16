@@ -1,0 +1,7 @@
+---
+- hosts: demo
+  become: yes
+  user: ansible
+  tasks:
+    - name: create directory
+      action : file name=mydirectory state=directory
